@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/gunnaringig/ITWEB_01#readme",
   "dependencies": {
+    "ejs": "^2.7.1",
     "express": "^4.17.1"
   }
 }
