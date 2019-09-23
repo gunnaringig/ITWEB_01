@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/gunnaringig/ITWEB_01#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "@material/form-field": "^3.2.0",
+    "@material/textfield": "^3.2.0",
+    "express": "^4.17.1",
+    "material-components-web": "^3.2.0"
   }
 }
