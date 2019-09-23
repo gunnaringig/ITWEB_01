@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 // Index ('/') GET-request
-router.get('/', (req, res) => {
+router.get('/workout', (req, res) => {
     res.render('workout');
 });
 

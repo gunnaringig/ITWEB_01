@@ -7,12 +7,14 @@
 
         <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                  <h1 class="display-4">Welcome to Personal fitnes</h1>
+                  <h1 class="display-4">Welcome to Personal fitness</h1>
                   <p class="lead">The personal trainer where you are the personal trainer</p>
                 </div>
               </div>
     <div class="row">
-            <div class="col-md-4" style="align-items: center">
+            <div class="col-md-4" style="align-items: center"></div>
+            <div class="col-md-4">
+                <div class="container">
             <section>
                 <form method="post" action="/users/login">
                     <h5>Use a local account to log in.</h5>
@@ -32,19 +34,19 @@
                     <hr />
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Log in</button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#registerModal">
                                 Register new</button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#forgotModal">Forgot password?</button>
                     </div>
                 </form>
-                    <!-- Button trigger modal -->
-
-      
+            
+  
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+              <h5 class="modal-title" id="registerModal">Register</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -78,20 +80,41 @@
                     <hr /> 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Register</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success">Register</button>
             
             </div>
           </div>
         </div>
       </div>
                 </form>
-                <p>
+<!--                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#forgotModal">Forgot password?</button>
+ -->                <!-- Modal -->
+<div class="modal fade" id="forgotModal" tabindex="-1" role="dialog" aria-labelledby="forgotModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="forgotModal">Forgot password</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              That's too bad. Please call the service number to get your account deleted and then create a new one!
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+                <!-- <p>
                         <a asp-page="./users/forgotPassword" onclick="">Forgot your password?</a>
-                    </p>
+                    </p> -->
             </section>
         </div>
     </div>
+</div>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
