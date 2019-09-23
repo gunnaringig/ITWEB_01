@@ -8,11 +8,11 @@
         <div class="jumbotron jumbotron-fluid">
                 <div class="container">
                   <h1 class="display-4">Welcome to Personal fitnes</h1>
-                  <p class="lead">The place where you decide what exercise you want to do</p>
+                  <p class="lead">The personal trainer where you are the personal trainer</p>
                 </div>
               </div>
     <div class="row">
-        <div class="container">
+            <div class="col-md-4" style="align-items: center">
             <section>
                 <form method="post" action="/users/login">
                     <h5>Use a local account to log in.</h5>
@@ -36,12 +36,13 @@
                     </div>
                     
                     <div class="form-group">
-                        <p>
-                            <a asp-page="./users/forgotPassword">Forgot your password?</a>
-                        </p>
+
 
                     </div>
                 </form>
+                <p>
+                        <a asp-page="./users/forgotPassword" onclick="">Forgot your password?</a>
+                    </p>
             </section>
         </div>
     </div>
