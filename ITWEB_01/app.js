@@ -14,7 +14,7 @@ app.engine('html', require('ejs').renderFile)
 app.set('view engine', 'ejs');
 
 app.use('/', routes);
-app.use('/', users);
+app.use('/users', users);
 
 // Set running port
 app.set('port', (process.env.PORT || 3000));

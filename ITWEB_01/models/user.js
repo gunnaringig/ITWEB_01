@@ -14,12 +14,40 @@ class Database {
   }
   
 _connect() {
-     mongoose.connect(`mongodb://${server}/${database}/${user}/${password}`)
-       .then(() => {
-         console.log('Database connection successful')
+    mongoose.connect(`mongodb://${server}/${database}/${user}/${password}`)
+        .then(() => {
+            console.log('Database connection successful')
        })
        .catch(err => {
-         console.error('Database connection error')
+            console.error('Database connection error')
        })
-  }
+    }
 }
+
+var User = mongoose.Schema({
+    email:{
+        type:String,
+        index:true
+    },
+    password:{
+        type:String
+    }
+});
+
+var User = module.exports = mongoose.model('User', User);
+
+module.exports.createUser = (user, callback) => {
+    bcrypt.genSalt(10, function (error, salt) {
+        bcrypt.hash(user.password, salt, function (error, hash) {
+            user.password = hash;
+            user.save(callback);
+        });
+    });
+}
+
+//TODO XX
+
+//Get user by id / name?
+
+//Compare passwords 
+
