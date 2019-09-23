@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Mandatory assignment 1",
   "main": "./routes/index.js",
+  "engines":{
+    "node": "12.9.1",
+    "npm": "6.x"
+  },
   "scripts": {
     "start": "node app.js",
     "build": "ng build",
