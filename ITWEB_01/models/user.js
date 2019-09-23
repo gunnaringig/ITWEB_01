@@ -1,53 +1,39 @@
-const mongodb = require('mongodb');
 const bcrypt = require('bcryptjs');
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-//Own local running Mongo database with Docker!
-const server = 'mongodb://localhost:27017';
-const database = 'DAB3';   
-const user = 'SA';
-const password = 'D15987532147er!'
-
-class Database {
-  constructor() {
-    this._connect()
-  }
-  
-_connect() {
-    mongoose.connect(`mongodb://${server}/${database}/${user}/${password}`)
-        .then(() => {
-            console.log('Database connection successful')
-       })
-       .catch(err => {
-            console.error('Database connection error')
-       })
-    }
-}
-
-var User = mongoose.Schema({
+var UserSchema = new mongoose.Schema({
     email:{
         type:String,
-        index:true
+        required: true
     },
     password:{
-        type:String
+        type:String,
+        required: true
     }
 });
 
-var User = module.exports = mongoose.model('User', User);
+var User = module.exports = mongoose.model('User', UserSchema);
 
-module.exports.createUser = (user, callback) => {
-    bcrypt.genSalt(10, function (error, salt) {
-        bcrypt.hash(user.password, salt, function (error, hash) {
-            user.password = hash;
-            user.save(callback);
+// Create new user with hashed password, SaltRounds = 10.
+module.exports.hashPassword = (newUser, callback) => {
+    bcrypt.genSalt(10, (error, salt) => {
+        bcrypt.hash(newUser.password, salt, (error, hash) => {
+            newUser.password = hash;
+            newUser.save(callback);
         });
     });
 }
 
-//TODO XX
+// Get User by email
+module.exports.getUserByEmail = (email, callback) => {
+    var usersQuery = { email:email };
+    User.findOne(usersQuery, callback);
+}
 
-//Get user by id / name?
-
-//Compare passwords 
-
+// Compare password
+module.exports.comparePassword = (password, hash, classback) => {
+    bcrypt.compare(password, hash, (error, isMatching) => {
+        if(error) throw error;
+        callback(null, isMatching);
+    });
+}
