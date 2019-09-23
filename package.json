@@ -1,0 +1,34 @@
+{
+  "name": "itweb_01",
+  "version": "1.0.0",
+  "description": "Mandatory assignment 1",
+  "main": "./routes/index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gunnaringig/ITWEB_01.git"
+  },
+  "author": "Gunnar, Mie, Daniel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gunnaringig/ITWEB_01/issues"
+  },
+  "homepage": "https://github.com/gunnaringig/ITWEB_01#readme",
+  "dependencies": {
+    "@material/button": "^3.2.0",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.4",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "express-validator": "^6.2.0",
+    "mongoclient": "^1.0.3",
+    "mongodb": "^3.3.2",
+    "mongoose": "^5.7.1",
+    "passport": "^0.4.0"
+  }
+}
