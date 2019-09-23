@@ -49,4 +49,8 @@ req.flash("success_msg", "User: " + user.mail + " is now created. You may login.
 res.redirect('/users/login');
 });
 
+function goBack(){
+    res.redirect('/index')
+}
+
 module.exports = router;

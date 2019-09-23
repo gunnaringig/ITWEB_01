@@ -1,6 +1,11 @@
 const express = require('express');
 const path = require('path');
 const router = express.Router();
+/* import {MDCRipple} from '@material/ripple';
+import {MDCTextField} from '@material/textfield';
+// instatiate materialdesign textfield
+const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
+const buttonRipple = new MDCRipple(document.querySelector('.mdc-button')); */
 
 // Routes
 var routes = require('./routes/index');

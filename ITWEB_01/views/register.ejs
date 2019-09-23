@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <head>
 </head>
 <body>
+        <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                  <h1 class="display-4">Welcome to Personal fitnes</h1>
+                  <p class="lead">The place where you decide what exercise you want to do</p>
+                </div>
+              </div>
+              <div class="container">
     <h2 class="page-header">Account Register</h2>
     <div class="row">
             <div class="col-md-4">
@@ -10,21 +18,39 @@
                     <h4>Register a new account.</h4>
                     <hr />
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" placeholder="Email" name="email">
+                            <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                                    </div>
+                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                  </div>
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" placeholder="Password" name="password">
+                            <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="inputGroup-sizing-default">Password</span>
+                                    </div>
+                                    <input type="password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                  </div>
                     </div>
                     <div class="form-group">
-                        <label>Confirm password</label>
-                        <input type="password" class="form-control" placeholder="Password" name="passwordConfirm">
+                            <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="inputGroup-sizing-default">Confirm password</span>
+                                    </div>
+                                    <input type="password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                  </div>
                     </div>
                     <hr />
                     <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="button" class="btn btn-danger" onclick="goBack()">Go back</button>
                 </form>
             </div>
+            </div>
         </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="/routes/users.js"></script>
 </body>
 </html>
