@@ -93,4 +93,8 @@ router.post('/logout', (req, res) => {
     res.redirect('/users/login');
 });
 
+function goBack(){
+    res.redirect('/index')
+}
+
 module.exports = router;
