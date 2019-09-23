@@ -5,6 +5,13 @@ const session = require('express-session');
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
 
+//Define server url
+const database = 'mongodb://localhost:27017/mongodbWEB'
+
+//Connect to Mongodb
+mongoose.connect(database, { useUnifiedTopology: true, useNewUrlParser: true  });
+
+
 //Used to parsse text from textboxes
 const bodyParser = require('body-parser');
 
@@ -43,13 +50,6 @@ app.listen(app.get('port'), function(){
 });
 
 /*
-//Text connectiong to mongodbWEB our Mongodb database
-//Define server url
-const database = 'mongodb://localhost:27017/mongodbWEB'
-
-//Connect to Mongodb
-mongoose.connect(database, { useUnifiedTopology: true, useNewUrlParser: true  });
-
 //Test connection
 console.log(mongoose.connection.readyState);
 

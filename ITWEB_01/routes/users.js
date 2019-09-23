@@ -41,27 +41,31 @@ router.post('/register', (req, res) => {
     */
 
     //TODO MAKE THIS NOT THROW AN ERROR!
-    if(password != passwordConfirm) throw error; 
+    //if(password != passwordConfirm) throw error; 
 
     //Create new User from UserSchema.
     var newUser = new User({
         email:email,
         password:password
-    })
+    });
+
+    console.log("Old " + newUser);
 
     //Hash User password
     User.hashPassword(newUser, (error, user) => {
         if(error) throw error;
-        console.log("User email: " + newUser.email);
-        console.log("Password hash: " + newUser.password);
+        console.log(user);
         
-        insertDocument(newUser);
+        InsertDocument(newUser);
     });
+    console.log("New" + newUser);
+
+    console.log("Not running hashPassword!");
     res.redirect('/users/login');
 });
 
 // Insert documents to database.
-function insertDocument(element, callback) {
+function InsertDocument(element) {
 
     //Open database connection
     client.connect( function(error) {
@@ -74,8 +78,7 @@ function insertDocument(element, callback) {
         // Insert some documents
         collection.insertOne(element);
 
-        console.log("Inserted 3 documents into the collection");
-        callback(result);
+        console.log("Inserted the element as a documents into the collection");
     });
     
     //Close database connection

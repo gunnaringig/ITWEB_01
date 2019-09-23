@@ -12,7 +12,7 @@ var UserSchema = new mongoose.Schema({
     }
 });
 
-var User = module.exports = mongoose.model('User', UserSchema);
+var User = module.exports = mongoose.model('User', UserSchema, 'UserCollection');
 
 // Create new user with hashed password, SaltRounds = 10.
 module.exports.hashPassword = (newUser, callback) => {
