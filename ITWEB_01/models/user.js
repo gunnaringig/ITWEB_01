@@ -1,25 +1,39 @@
-const mongodb = require('mongodb');
 const bcrypt = require('bcryptjs');
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-//Own local running Mongo database with Docker!
-const server = 'mongodb://localhost:27017';
-const database = 'DAB3';   
-const user = 'SA';
-const password = 'D15987532147er!'
+var UserSchema = new mongoose.Schema({
+    email:{
+        type:String,
+        required: true
+    },
+    password:{
+        type:String,
+        required: true
+    }
+});
 
-class Database {
-  constructor() {
-    this._connect()
-  }
-  
-_connect() {
-     mongoose.connect(`mongodb://${server}/${database}/${user}/${password}`)
-       .then(() => {
-         console.log('Database connection successful')
-       })
-       .catch(err => {
-         console.error('Database connection error')
-       })
-  }
+var User = module.exports = mongoose.model('User', UserSchema, 'UserCollection');
+
+// Create new user with hashed password, SaltRounds = 10.
+module.exports.hashPassword = (newUser, callback) => {
+    bcrypt.genSalt(10, (error, salt) => {
+        bcrypt.hash(newUser.password, salt, (error, hash) => {
+            newUser.password = hash;
+            newUser.save(callback);
+        });
+    });
+}
+
+// Get User by email
+module.exports.getUserByEmail = (email, callback) => {
+    var usersQuery = { email:email };
+    User.findOne(usersQuery, callback);
+}
+
+// Compare password
+module.exports.comparePassword = (password, hash, classback) => {
+    bcrypt.compare(password, hash, (error, isMatching) => {
+        if(error) throw error;
+        callback(null, isMatching);
+    });
 }
