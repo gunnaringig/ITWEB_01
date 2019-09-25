@@ -37,12 +37,12 @@ router.post('/register', [
         .withMessage('Password must be with length of 6'),
 
     check('passwordConfirm')
-        .equals('password')
-        .withMessage("Both passwords must be equal")
+        .isLength({ min: 6 })
+        .withMessage('Password must be with length of 6'),
 
 ], (req, res) => {
 
-    //
+    //Show Errors
     const errors = validationResult(req);
         if(!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.array() })
@@ -50,6 +50,9 @@ router.post('/register', [
     
     const email = req.body.email;
     const password = req.body.password;
+    const passwordConfirm = req.body.passwordConfirm
+
+    if(password != passwordConfirm) return res.status(422).json('Password: (' + password + ') and (' + passwordConfirm + ') not equal.');
 
      //Create new User from UserSchema.
      var newUser = new User({
