@@ -1,10 +1,13 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
+SALT_FACTOR = 10;
+
 var UserSchema = new mongoose.Schema({
     email:{
         type:String,
-        required: true
+        required: true,
+        index: { unique: true }
     },
     password:{
         type:String,
@@ -12,9 +15,36 @@ var UserSchema = new mongoose.Schema({
     }
 });
 
-var User = module.exports = mongoose.model('User', UserSchema, 'UserCollection');
+//Preset a hashed password for new User
+UserSchema.pre('save', function(next) {
+    var user = this;
 
-// Create new user with hashed password, SaltRounds = 10.
+    //Hash user password if Modified or User is new.
+    if(!user.isModified('password')) return next();
+
+    //Generate salt.
+    bcrypt.genSalt(SALT_FACTOR, (error, salt) => {
+        if(error) return next(error);
+
+        //Hash users password with salt.
+        bcrypt.hash(user.password, salt, (error, hashPassword) => {
+            if(error) return next(error);
+
+            //Overwrite plaintext with hashed password
+            user.password = hashPassword;
+            next();
+        });
+    });
+});
+
+UserSchema.methods.comparePassword = (password, hash, callback) => {
+    bcrypt.compare(password, hash, (error, isMatching) => {
+        if(error) throw error;
+        callback(null, isMatching);
+    });
+}
+
+// Update users password to hashed, SaltRounds = 10.
 module.exports.hashPassword = (newUser, callback) => {
     bcrypt.genSalt(10, (error, salt) => {
         bcrypt.hash(newUser.password, salt, (error, hash) => {
@@ -37,3 +67,6 @@ module.exports.comparePassword = (password, hash, classback) => {
         callback(null, isMatching);
     });
 }
+
+// Export User model for usage in oth files.
+module.exports = mongoose.model('User', UserSchema, 'UserCollection');
