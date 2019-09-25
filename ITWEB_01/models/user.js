@@ -37,13 +37,14 @@ UserSchema.pre('save', function(next) {
     });
 });
 
-UserSchema.methods.comparePassword = (password, hash, callback) => {
-    bcrypt.compare(password, hash, (error, isMatching) => {
-        if(error) throw error;
+UserSchema.methods.comparePassword = function(passwordToCheck, callback) {
+    bcrypt.compare(passwordToCheck, this.password, function(error, isMatching) {
+        if(error) return error;
         callback(null, isMatching);
     });
-}
+};
 
+/*
 // Update users password to hashed, SaltRounds = 10.
 module.exports.hashPassword = (newUser, callback) => {
     bcrypt.genSalt(10, (error, salt) => {
@@ -53,6 +54,7 @@ module.exports.hashPassword = (newUser, callback) => {
         });
     });
 }
+*/
 
 // Get User by email
 module.exports.getUserByEmail = (email, callback) => {
@@ -69,4 +71,4 @@ module.exports.comparePassword = (password, hash, classback) => {
 }
 
 // Export User model for usage in oth files.
-module.exports = mongoose.model('User', UserSchema, 'UserCollection');
+module.exports = mongoose.model('User', UserSchema);

@@ -24,7 +24,41 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-// Register a User
+// Login POST-request
+router.post('/login', (req, res) => {
+
+    //Find user this that email.
+    User.findOne({ email: req.body.email }, (error, user) => {
+        if(error) return res.status(422).json(error);
+
+        console.log(user);
+
+        if(!user){
+            return res.status(404).json({ error: "No user with that email" });
+
+        } else {
+            //Compare found user's password with the one tried.
+            user.comparePassword(req.body.password, (error, isMatching) => {
+                if(error) return res.status(422).json(error);
+
+                console.log('Password: ' + req.body.password, isMatching);
+
+                //Check result for comparing password to selected user.
+                if(isMatching == false){
+                    return res.status(422).json('User and password does not match.');
+                } else {
+
+                    return res.redirect('./workout');
+                }          
+            });
+        }
+    });
+    //Should never get this far
+    res.redirect('./login');
+});
+
+
+// Register POST-Request
 router.post('/register', [
     
     //Validate inputs
@@ -65,7 +99,7 @@ router.post('/register', [
         if(error) return console.log(error);
     });
 
-   res.redirect('./login');
+    res.redirect('./login');
 });
 
 
@@ -91,11 +125,6 @@ function InsertDocument(element) {
     client.close()
 };
 */
-
-// User login
-router.post('/login', (req, res) => {
-    res.redirect('/');
-});
 
 // User logout
 router.post('/logout', (req, res) => {
