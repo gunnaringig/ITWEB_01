@@ -33,28 +33,23 @@ router.post('/login', (req, res) => {
 
         console.log(user);
 
-        if(!user){
-            return res.status(404).json({ error: "No user with that email" });
+        if(user === null) return res.status(404).json({ error: "No user with that email" });
+        
 
-        } else {
-            //Compare found user's password with the one tried.
-            user.comparePassword(req.body.password, (error, isMatching) => {
-                if(error) return res.status(422).json(error);
+        //Compare found user's password with the one tried.
+        user.comparePassword(req.body.password, (error, isMatching) => {
+            if(error) return res.status(422).json(error);
 
-                console.log('Password: ' + req.body.password, isMatching);
+            console.log('Password: ' + req.body.password, isMatching);
 
-                //Check result for comparing password to selected user.
-                if(isMatching == false){
-                    return res.status(422).json('User and password does not match.');
-                } else {
-
-                    return res.redirect('./workout');
-                }          
-            });
-        }
+            //Check result for comparing password to selected user.
+            if(isMatching === false) {
+                return res.status(422).json('User and password does not match.');
+            }
+            
+            return res.redirect('./workout');
+        });
     });
-    //Should never get this far
-    res.redirect('./login');
 });
 
 
