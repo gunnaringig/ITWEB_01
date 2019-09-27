@@ -39,7 +39,7 @@ app.use(session({
 }));
 
 //Routes
-var routes = require('./routes/index');
+var index = require('./routes/index');
 var users = require('./routes/users');
 
 app.set('views', path.join(__dirname,'views'));
@@ -50,7 +50,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Routing options for server.
-app.use('/', routes);
+app.use('/', index);
 app.use('/users', users);
 
 //Set running port

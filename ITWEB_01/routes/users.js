@@ -9,19 +9,68 @@ const { check, validationResult } = require('express-validator');
 //Usermodel
 var User = require('../models/user');
 
+//Exercisemodel
+var Exercise = require('../models/exercise');
+
+//Planmodel
+var Plan = require('../models/plan');
+
+// Register ('/users/register') GET-request
+router.get('/plan', (req, res) => {
+
+    console.log('---');
+    console.log(req.session.user._id);
+
+    /*
+    //Create new Test plan from PlanSchema.
+    var newPlan = new Plan({
+        name: "PlanNameTest",
+        users: req.session.user._id
+    });
+    */
+
+    /*
+    //Short for creating a new document to database.
+    newPlan.save((error) => {
+        if(error) return console.log(error);
+    });
+    */
+
+    User.findOne({ email: req.body.email }, (error, user) => {
+        if(error) return res.status(422).json(error);
+
+    console.log("------");
+    console.log(User.email);
+
+    // Get plans for user
+    Plan.find({ id: req.session.userId}, 
+        function(err, plans) {
+        if(err) {
+            console.log(error);
+        }
+
+
+        console.log("------");
+        console.log(plans);
+
+        res.render('plan', {data: plans});
+        });
+    });
+});
+
 // Register ('/users/register') GET-request
 router.get('/register', (req, res) => {
     res.render('register');
 });
 
-// Workout ('/users/workout') GET-request
-router.get('/workout', (req, res) => {
-    res.render('workout');
-  });
-  
 // login ('/users/login') GET-request
 router.get('/login', (req, res) => {
     res.render('login');
+});
+
+// plan ('/users/plan') GET-request
+router.get('/plan', (req, res) => {
+    res.render('plan');
 });
 
 // Login POST-request
@@ -34,7 +83,6 @@ router.post('/login', (req, res) => {
         console.log(user);
 
         if(user === null) return res.status(404).json({ error: "No user with that email" });
-        
 
         //Compare found user's password with the one tried.
         user.comparePassword(req.body.password, (error, isMatching) => {
@@ -46,8 +94,11 @@ router.post('/login', (req, res) => {
             if(isMatching === false) {
                 return res.status(422).json('User and password does not match.');
             }
-            
-            return res.redirect('./workout');
+
+            //Set userId for later usage
+            req.session.user = user;
+
+            return res.redirect('./plan');
         });
     });
 });
@@ -55,7 +106,7 @@ router.post('/login', (req, res) => {
 
 // Register POST-Request
 router.post('/register', [
-    
+
     //Validate inputs
     check('email')
         .isEmail()
@@ -76,7 +127,7 @@ router.post('/register', [
         if(!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.array() })
         }
-    
+
     const email = req.body.email;
     const password = req.body.password;
     const passwordConfirm = req.body.passwordConfirm
@@ -89,37 +140,13 @@ router.post('/register', [
         password: password
     });
 
-    //Short for creating a new document to database. 
+    //Short for creating a new document to database.
     newUser.save((error) => {
         if(error) return console.log(error);
     });
 
     res.redirect('./login');
 });
-
-
-/* This is the old insert function.
-// Insert documents to database.
-function InsertDocument(element) {
-
-    //Open database connection
-    client.connect( function(error) {
-
-        const db = client.db(dbName);
-
-        // Get the documents collection
-        const collection = db.collection('userCollection');
-
-        // Insert some documents
-        collection.insertOne(element);
-
-        console.log("Inserted the element as a documents into the collection");
-    });
-    
-    //Close database connection
-    client.close()
-};
-*/
 
 // User logout
 router.post('/logout', (req, res) => {

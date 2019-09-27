@@ -1,6 +1,15 @@
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
+//Usermodel
+var User = require('../models/user');
+
+//Exercisemodel
+var Exercise = require('../models/exercise');
+
+//Planmodel
+var Plan = require('../models/plan');
+
 SALT_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
@@ -12,7 +21,8 @@ var UserSchema = new mongoose.Schema({
     password:{
         type:String,
         required: true
-    }
+    },
+    plans: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Plan' }]
 });
 
 //Preset a hashed password for new User
@@ -63,12 +73,14 @@ module.exports.getUserByEmail = (email, callback) => {
 }
 
 // Compare password
-module.exports.comparePassword = (password, hash, classback) => {
+module.exports.comparePassword = (password, hash, callback) => {
     bcrypt.compare(password, hash, (error, isMatching) => {
         if(error) throw error;
         callback(null, isMatching);
     });
 }
+
+
 
 // Export User model for usage in oth files.
 module.exports = mongoose.model('User', UserSchema);

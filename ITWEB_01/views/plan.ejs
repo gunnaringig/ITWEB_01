@@ -1,0 +1,17 @@
+<html>
+<head>
+</head>
+<body>
+<div class="container-fluid bg-3 text-center">    
+  <div class="row">
+    <div class="col-sm-4">
+    <p>Users workouts plan</p>
+    <h2>Plan</h2>
+        <%data.forEach(function(plan){  %>
+            <b>ID: </b><%= plan._id%>
+            </br>
+            <b>Name: </b><%= plan.name%>
+        <%})%>    
+</div>
+</body>
+</html>
