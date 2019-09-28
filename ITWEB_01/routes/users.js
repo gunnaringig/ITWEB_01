@@ -15,32 +15,30 @@ var Exercise = require('../models/exercise');
 //Planmodel
 var Plan = require('../models/plan');
 
-// Register ('/users/register') GET-request
-router.get('/plan', (req, res) => {
+//plan ('/users/plan') POST-request
+router.post('/plan', (req, res) => {
 
-    console.log('---');
-    console.log(req.session.user._id);
+    console.log("TEST");
 
-    /*
     //Create new Test plan from PlanSchema.
     var newPlan = new Plan({
-        name: "PlanNameTest",
+        name: req.body.name,
         users: req.session.user._id
     });
-    */
 
-    /*
     //Short for creating a new document to database.
     newPlan.save((error) => {
         if(error) return console.log(error);
     });
-    */
+
+    return res.redirect('./plan');
+});
+
+// plan ('/users/plan') GET-request
+router.get('/plan', (req, res) => {
 
     User.findOne({ email: req.body.email }, (error, user) => {
         if(error) return res.status(422).json(error);
-
-    console.log("------");
-    console.log(User.email);
 
     // Get plans for user
     Plan.find({ id: req.session.userId}, 
