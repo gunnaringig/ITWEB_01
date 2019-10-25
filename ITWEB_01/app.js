@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
-
+//
 //Define server url
 const database = 'mongodb://localhost:27017/mongodbWEB'
 
@@ -23,6 +23,8 @@ const router = express.Router();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+
+
 
 // Routes
 var routes = require('./routes/index');
