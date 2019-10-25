@@ -21,7 +21,7 @@ mongoose.connect(database, { useUnifiedTopology: true, useNewUrlParser: true  })
 //Used to parsse text from textboxes
 const bodyParser = require('body-parser');
 
-//Init app and router
+// Init app and router
 const app = express();
 const router = express.Router();
 
