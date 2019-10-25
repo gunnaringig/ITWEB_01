@@ -64,6 +64,7 @@ app.listen(app.get('port'), function(){
 //Test connection
 console.log(mongoose.connection.readyState);
 
+
 /*
 0: disconnected
 1: connected
