@@ -6,7 +6,7 @@
 <div class="container-fluid bg-3 text-center">    
   <div class="row">
     <div class="col-sm-4">
-    <h2>Users workout plans</h2>
+    <h2>Workout plans</h2>
         <%data.forEach(function(plan){  %>
             </br>
             <b>ID: </b><%= plan._id%>
@@ -35,6 +35,22 @@
 <hr />
 <button type="submit" class="btn btn-primary">Create</button>
 </form>
+
+<!-- Post plan to user -->
+<form method="post" action="/plan">
+    <div class="form-group">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Create new plan</span>
+            </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="name" placeholder="Name">
+        </div>
+    </div>
+<hr />
+<button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+
 <form method="post" action="/exercises">
     <div class="form-group">
         <div class="input-group mb-3">

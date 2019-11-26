@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     res.render('index');
 });
 
-var exercises = require("exercises");
-app.post("/exercises", exercises.post);
+//var exercises = require("exercises");
+//app.post("/exercises", exercises.post);
 
 module.exports = router;

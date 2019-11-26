@@ -43,10 +43,12 @@ module.exports.getPlans = (userId, callback) => {
 // Export User model for usage in oth files.
 module.exports = mongoose.model('Plan', PlanSchema);
 
+
+/*
 var Message = require(Plan);
 exports.post = function(req,res){
-console.log(req.body.text)
-var msg = {message:req.body.text,date:new Date()};
+console.log( req.body.text)
+var msg = { message:req.body.text, date:new Date()};
 
 
 Message(msg).save(function(error,data){
@@ -58,3 +60,4 @@ Message(msg).save(function(error,data){
     res.send({statud:"Cancel"})
     }
     })};
+*/
