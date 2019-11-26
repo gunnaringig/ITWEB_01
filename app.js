@@ -42,6 +42,7 @@ app.use(session({
 //Routes
 var index = require('./routes/index');
 var users = require('./routes/users');
+var plans = require('./routes/plans');
 
 app.set('views', path.join(__dirname,'views'));
 app.engine('html', require('ejs').__express);
@@ -53,6 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Routing options for server.
 app.use('/', index);
 app.use('/users', users);
+app.use('/plans', plans);
 
 //Set running port
 app.set('port', (process.env.PORT || 3000));

@@ -13,15 +13,34 @@
             </br>
             <b>Name: </b><%= plan.name%>
             </br>
-            <b>Exercise: </b><%= plan._exercise%>
-            </br>
-            <b>Reps: </b><%= plan.reps%>
-            </br>
-            <b>Set: </b><%= plan.sets%>
+            
+            <!-- Loop all exercise in plan -->
+
+            <%data.forEach(function(plan.exercises){  %>
+
+                <%data.forEach(function(plan.exercises){  %>
+
+                </br>
+                <b>Exercise: </b><%= exercises.name%>
+                </br>
+    
+                </br>
+                <b>sets: </b><%= exercises.sets%>
+                </br>
+    
+                </br>
+                <b>Reps: </b><%= exercises.reps_time%>
+                </br>
+    
+                <%})%>
+
+            <%})%>
+        
+
             <hr />
         <%})%>
+    </div>
 </div>
-  </div>
 </br>
 <form method="post" action="/users/plan">
     <div class="form-group">
@@ -41,35 +60,30 @@
     <div class="form-group">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Create new plan</span>
+                <span class="input-group-text" id="inputGroup-sizing-default">Register plan to user</span>
             </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="name" placeholder="Name">
+
+                <!-- input id for plan -->
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" planId="id" placeholder="id">
         </div>
     </div>
 <hr />
-<button type="submit" class="btn btn-primary">Create</button>
+<button type="submit" class="btn btn-primary">Assign</button>
 </form>
 
 
-<form method="post" action="/exercises">
+<form method="post" action="/plans/exercise">
     <div class="form-group">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <h3 class="input-group-text" id="inputGroup-sizing-default">Create new exercise</h3>
+                <h3 class="input-group-text" id="inputGroup-sizing-default">Create new exercise to plan</h3>
             </div>
    
-
-                      <%data.forEach(function(plan){  %>
-                        <b>Name: </b><%= plan._id%>
-                        <br>       
-                        <b>Name: </b><%= plan.name%> 
-                        <hr />
-                        <%})%></a>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="plan._id" placeholder="Id">
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="plan.name" placeholder="Name">
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="exercises" placeholder="Exercise">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="id" placeholder="PlanId">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="name" placeholder="Name">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="description" placeholder="Description">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="sets" placeholder="Sets">
                 <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="reps" placeholder="Reps">
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="set" placeholder="Set">
 
         </div>
     </div>
