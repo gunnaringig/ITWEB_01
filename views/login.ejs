@@ -2,9 +2,42 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <html lang="en">
 <head>
+        <title></title>
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+        </script>
+        <script> 
+        $(function(){
+          $("#header").load("layout.ejs"); 
+        });
+        </script> 
+        </head>
+        <body>
+        <div id="header"></div>
+        <div id="nav">
+          <div class="col-sm nav-align">
+              <h1 id="title">Fitness-App</h1>
+          </div>
+          <div class="col-sm nav-align">
+              <a href="/index">
+                  <span class="button">Home</span>
+              </a>
+              <a href="/users/plan">
+                  <span class="button">Create plan/exercise</span>
+              </a>
+              <a href="/plan">
+                  <span class="button">See all plans</span>
+              </a>
+              <a action="/logout">
+                  <span class="button">Logout</span>
+              </a>
+          </div>
+      </div>
+        </body>
 </head>
 <body>
-
         <div class="jumbotron jumbotron-fluid">
                 <div class="container">
                   <h1 class="display-4">Welcome to Personal fitness</h1>
