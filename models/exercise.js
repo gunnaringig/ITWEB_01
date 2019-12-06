@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 var Plan = require('../models/plan');
 
 var ExerciseSchema = new mongoose.Schema({
+    planId:{
+        type:String,
+        required: true,
+    },
     name:{
         type:String,
         required: true,
@@ -24,4 +28,4 @@ var ExerciseSchema = new mongoose.Schema({
 // Export User model for usage in oth files.
 //module.exports = mongoose.model('Exercise', ExerciseSchema);
 
-module.exports = mongoose.set(Plan.name, ExerciseSchema);
+module.exports = mongoose.model('Exercise', ExerciseSchema);

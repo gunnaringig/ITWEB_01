@@ -48,8 +48,8 @@ router.get('/plan', (req, res) => {
         }
 
 
-        console.log("------");
-        console.log(plans);
+
+        
 
         res.render('plan', {data: plans});
         });
